@@ -4,8 +4,9 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-	"debug" : "node --inspect %USERPROFILE%\\AppData\\Roaming\\npm\\node_modules\\serverless\\bin\\serverless offline -s dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node .\\node_modules\\serverless\\bin\\serverless offline -s dev",
+    "debug": "node --inspect .\\node_modules\\serverless\\bin\\serverless offline -s dev",
+    "test": "node .\\node_modules\\mocha\\bin\\mocha -r ts-node/register test/*.ts"
   },
   "engines": {
     "node": ">=14.15.0"
@@ -17,10 +18,16 @@
   "devDependencies": {
     "@serverless/typescript": "^2.23.0",
     "@types/aws-lambda": "^8.10.71",
+    "@types/mocha": "^9.0.0",
     "@types/node": "^14.14.25",
+    "@types/supertest": "^2.0.11",
     "json-schema-to-ts": "^1.5.0",
-    "serverless": "^2.23.0",
+    "mocha": "^9.1.2",
+    "serverless": "^2.60.2",
     "serverless-esbuild": "^1.17.1",
+    "serverless-offline": "^8.2.0",
+    "should": "^13.2.3",
+    "supertest": "^6.1.6",
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^4.1.3"
