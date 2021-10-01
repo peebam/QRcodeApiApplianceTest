@@ -1,6 +1,6 @@
 import type { AWS } from '@serverless/typescript';
 
-import ping from '@functions/ping';
+import generate from '@functions/generate';
 
 const serverlessConfiguration: AWS = {
   service: 'pyxo-qrcode-api',
@@ -31,7 +31,7 @@ const serverlessConfiguration: AWS = {
     lambdaHashingVersion: '20201221',
   },
   // import the function via paths
-  functions: { ping },
+  functions: { generate },
 };
 
 module.exports = serverlessConfiguration;
