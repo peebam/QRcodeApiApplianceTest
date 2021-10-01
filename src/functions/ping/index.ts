@@ -7,7 +7,7 @@ export default {
     {
       http: {
         method: 'post',
-        path: 'hello',
+        path: 'ping',
         request: {
           schema: {
             'application/json': schema
