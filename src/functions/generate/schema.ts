@@ -1,9 +1,16 @@
 export default {
     type: "object",
     properties: {
-      prefix: { type: 'string' },
-      number : {type: 'number' }
+      prefix: { 
+        type: "string"
+      },
+      quantity : {
+        type: "number" 
+      },
+      addLabel : { 
+        type: "boolean"
+      }
     },
-    required: ['number']
+    required: ["quantity"]
   } as const;
   

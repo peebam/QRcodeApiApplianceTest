@@ -43,8 +43,11 @@ class QrCodesService implements IQrCodesService
         }
         
         let qrcode : Buffer = await toBuffer(content, options);
-        let qrCodeWithLabel : Buffer = await addLabel(qrcode, label);
 
+        if (!label) 
+            return qrcode;
+        
+        let qrCodeWithLabel : Buffer = await addLabel(qrcode, label);
         return qrCodeWithLabel;
     }
 }

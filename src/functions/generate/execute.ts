@@ -13,12 +13,14 @@ const buildS3DocumentPath = (id: string) : string => `${s3Root}/${id}`;
 
 const generateId : () => string = customAlphabet(idAlphabet, 7);
 
-const generateContent = (id: string, prefix?  : string) : string => `${prefix || ""}${id}`;
+const generateContent = (id: string, prefix  : string) : string => `${prefix || ""}${id}`;
 
-async function generateQrcode(id : string, prefix? : string) : Promise<string>
+async function generateQrcode(id : string, prefix : string, addLabel : boolean) : Promise<string>
 {
     let content = generateContent(id, prefix);
-    let qrcode : Buffer = await qrCode.generate(content, id);
+
+    let label = (addLabel ? id : "");
+    let qrcode : Buffer = await qrCode.generate(content, label);
 
     let path : string = buildS3DocumentPath(id);
     let metadata : Record<string, string> = {
@@ -29,15 +31,15 @@ async function generateQrcode(id : string, prefix? : string) : Promise<string>
     return await s3.upload(path, qrcode, "png", metadata);
 }
 
-async function generateQrcodes(number: number, prefix? : string) : Promise<Record<string, string>>
+async function generateQrcodes(quantity: number, prefix : string, addLabel : boolean) : Promise<Record<string, string>>
 {
     let locations = {};
     
-    for(let i = 0; i < number; i++)
+    for(let i = 0; i < quantity; i++)
     {
         let id = generateId();
 
-        let location = await generateQrcode(id, prefix);
+        let location = await generateQrcode(id, prefix, addLabel);
         locations[id] = location;
     }
 
