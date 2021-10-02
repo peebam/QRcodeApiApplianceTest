@@ -1,4 +1,6 @@
 import * as AWS from "aws-sdk";
+import cleanDeep from "clean-deep";
+
 var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
 
 import type IS3Service from "./type";
@@ -19,7 +21,7 @@ class S3Service implements IS3Service
     /**
      * @returns URL to get the content
      */
-    async upload(path: string, content: Buffer, type: string, metadata? : AWS.S3.Metadata) : Promise<string>
+    async upload(path: string, content: Buffer, type: string, metadata? : Record<string, string>) : Promise<string>
     {
         return new Promise<string>((resolve, reject) => {
             var uploadParams : AWS.S3.PutObjectRequest = {
@@ -27,7 +29,7 @@ class S3Service implements IS3Service
                 Key: path, 
                 Body: content,
                 ContentType : type,
-                Metadata : metadata
+                Metadata : cleanDeep(metadata)
             };
         
             this._s3.upload (uploadParams, (err, data) => {
