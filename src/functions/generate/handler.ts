@@ -1,30 +1,25 @@
 import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/apiGateway';
-import { formatOk, formatError } from '@libs/apiGateway';
+import { sendOk, sendInternalError } from '@libs/apiGateway';
 import { middyfy } from '@libs/lambda';
 
-import qrCode from "@services/qrcodes";
-import s3 from "@services/s3";
- 
+import execute from './execute';
 import schema from './schema';
+
+
 const hello: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
 
   try {
-    event;
-    
-    let buffer : Buffer = await qrCode.generate("testestt");
-    
-    await s3.upload("test", buffer);
+   
+    let number : number = event.body.number;
+    let prefix : string =event.body.prefix; 
 
-    return formatOk({
-        message: "ok",
-    });
+    await execute(number, prefix);
+
+    return sendOk({ message: "ok" });
   }
   catch(e)
   {
-    return formatError({
-        message : e.message,
-        exception : e
-    })
+    return sendInternalError({ message : e.message });
   }
 }
 
