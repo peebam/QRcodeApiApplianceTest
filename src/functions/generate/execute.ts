@@ -1,7 +1,7 @@
 import qrCode from "@services/qrcodes";
 import S3 from "@services/s3";
 import { customAlphabet } from "nanoid";
-// import * as fs from "@libs/filesys"
+
 const bucket : string = "br-bucket-dev";
 const region : string = "us-east-2";
 const s3 : S3 = new S3(bucket, region);
@@ -26,13 +26,10 @@ async function generateQrcode(id : string, prefix? : string) : Promise<string>
         "prefix" : prefix
     };
     
-    // await fs.writeBufferToDiskAsync(`${id}.png`, qrcode);
-    // return
-
     return await s3.upload(path, qrcode, "png", metadata);
 }
 
-export default async function (number: number, prefix? : string) : Promise<Record<string, string>>
+async function generateQrcodes(number: number, prefix? : string) : Promise<Record<string, string>>
 {
     let locations = {};
     
@@ -46,3 +43,5 @@ export default async function (number: number, prefix? : string) : Promise<Recor
 
     return locations;
 };
+
+export default generateQrcodes;
