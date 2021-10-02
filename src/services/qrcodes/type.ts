@@ -1,4 +1,4 @@
 
-export default interface IQrCodeGeneratorService {
-    generate(content: string) : Promise<Buffer>
+export default interface IQrCodesService {
+    generate(content: string, label: string) : Promise<Buffer>
 }

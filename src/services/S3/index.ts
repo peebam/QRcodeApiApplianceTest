@@ -1,4 +1,4 @@
-import * as AWS from "aws-sdk";
+import AWS from "aws-sdk";
 import cleanDeep from "clean-deep";
 
 var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
