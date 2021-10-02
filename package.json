@@ -5,8 +5,7 @@
   "main": "serverless.ts",
   "scripts": {
     "start": "node .\\node_modules\\serverless\\bin\\serverless offline -s dev",
-    "debug": "node --inspect .\\node_modules\\serverless\\bin\\serverless offline -s dev",
-    "test": "node .\\node_modules\\mocha\\bin\\mocha -r ts-node/register test/*.ts"
+    "debug": "node --inspect .\\node_modules\\serverless\\bin\\serverless offline -s dev"
   },
   "engines": {
     "node": ">=14.15.0"
@@ -29,12 +28,9 @@
     "@types/qrcode": "^1.4.1",
     "@types/supertest": "^2.0.11",
     "json-schema-to-ts": "^1.5.0",
-    "mocha": "^9.1.2",
     "serverless": "^2.60.2",
     "serverless-esbuild": "^1.17.1",
     "serverless-offline": "^8.2.0",
-    "should": "^13.2.3",
-    "supertest": "^6.1.6",
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^4.1.3"
