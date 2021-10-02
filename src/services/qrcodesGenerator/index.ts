@@ -1,8 +1,8 @@
 import { toBuffer, QRCodeToBufferOptions } from "qrcode";
 
-import type IQrCodeGeneratorService from "./type";
+import type IQrCodesService from "./type";
 
-class QrCodeService implements IQrCodeGeneratorService 
+class QrCodesService implements IQrCodesService 
 {
     async generate(content: string) : Promise<Buffer>
     {
@@ -15,4 +15,4 @@ class QrCodeService implements IQrCodeGeneratorService
     }
 }
 
-export default new QrCodeService();
+export default new QrCodesService();

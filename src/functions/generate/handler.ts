@@ -2,7 +2,7 @@ import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/apiGateway';
 import { formatOk, formatError } from '@libs/apiGateway';
 import { middyfy } from '@libs/lambda';
 
-import qrCode from "@services/qrcodesGenerator";
+import qrCode from "@services/qrcodes";
 import s3 from "@services/s3";
  
 import schema from './schema';
