@@ -11,11 +11,11 @@ const hello: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) =
   try {
    
     let number : number = event.body.number;
-    let prefix : string =event.body.prefix; 
+    let prefix : string = event.body.prefix; 
 
-    await execute(number, prefix);
+    let response = await execute(number, prefix);
 
-    return sendOk({ message: "ok" });
+    return sendOk(response);
   }
   catch(e)
   {
