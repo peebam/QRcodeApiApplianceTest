@@ -17,3 +17,10 @@ export const sendInternalError = (response: Record<string, unknown>) => {
     body: JSON.stringify(response)
   }
 }
+
+export const sendBadRequest = (response: Record<string, unknown>) => {
+  return {
+    statusCode: 400,
+    body: JSON.stringify(response)
+  }
+}
