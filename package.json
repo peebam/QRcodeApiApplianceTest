@@ -16,8 +16,9 @@
     "@middy/http-json-body-parser": "^1.5.2",
     "aws-sdk": "^2.999.0",
     "clean-deep": "^3.4.0",
+    "jimp": "^0.16.0",
     "nanoid": "^3.1.28",
-    "qrcode": "^1.4.4"
+    "qrcode": "^1.4.4",
   },
   "devDependencies": {
     "@serverless/typescript": "^2.23.0",
