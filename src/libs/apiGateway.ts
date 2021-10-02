@@ -11,6 +11,13 @@ export const sendOk = (response: Record<string, unknown>) => {
   }
 }
 
+export const sendCreated = (response: Record<string, unknown>) => {
+  return {
+    statusCode: 201,
+    body: JSON.stringify(response)
+  }
+}
+
 export const sendInternalError = (response: Record<string, unknown>) => {
   return {
     statusCode: 500,
