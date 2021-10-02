@@ -1,7 +1,6 @@
 import * as AWS from "aws-sdk";
 var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
 
-
 import type IS3Service from "./type";
 
 class S3Service implements IS3Service 
@@ -17,27 +16,29 @@ class S3Service implements IS3Service
         this._bucket = bucket;
     }
 
-    async upload(path: string, content: Buffer)
+    /**
+     * @returns URL to get the content
+     */
+    async upload(path: string, content: Buffer, type: string, metadata? : AWS.S3.Metadata) : Promise<string>
     {
-        return new Promise<void>((resolve, reject) => {
+        return new Promise<string>((resolve, reject) => {
             var uploadParams : AWS.S3.PutObjectRequest = {
                 Bucket: this._bucket, 
                 Key: path, 
-                Body: content
+                Body: content,
+                ContentType : type,
+                Metadata : metadata
             };
         
-            this._s3.upload (uploadParams, (err) => {
+            this._s3.upload (uploadParams, (err, data) => {
                 if (err) {
                     reject(err);
                     return;
                 }
-                resolve();
+                resolve(data.Location);
             });
         });
     }
 }
 
-const bucket : string = "br-bucket-dev";
-const region : string = "us-east-2";
-
-export default new S3Service(bucket, region);
+export default S3Service
