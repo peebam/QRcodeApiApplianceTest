@@ -1,3 +1,13 @@
+# But
+
+Implémentation d'une lambda AWS permettant de générer un ou un ensemble de qrcode. Un identifiant sur 7 caractères aléatoires est généré pour chaque qrcode. Le contenu du qrcode est son identifant éventuellement préfixé par une chaine, si elle est fournie.
+
+Cette fonction acceptent les paramètres suivant :
+
+- `quantity : number [required]` : nombre de qrcodes à générer,
+- `prefix : string [optional]` : prefix de l'identifiant constituant le contenu du qrcode,
+- `addLabel : boolean (= false) [optional]` : si `true`, l'identifiant est affichée sous le qrcode (centré en bas)
+
 # How to
 
 Configurer les 'credentials' aws : Néessaire au déploiement et permet aussi d'accéder à S3 depuis une exécution locale :
