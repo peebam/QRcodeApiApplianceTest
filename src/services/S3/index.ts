@@ -25,6 +25,7 @@ class S3Service implements IS3Service
     {
         return new Promise<string>((resolve, reject) => {
             var uploadParams : AWS.S3.PutObjectRequest = {
+                ACL : "public-read",
                 Bucket: this._bucket, 
                 Key: path, 
                 Body: content,
