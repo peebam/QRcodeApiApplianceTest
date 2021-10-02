@@ -13,11 +13,11 @@ const buildS3DocumentPath = (id: string) : string => `${s3Root}/${id}`;
 
 const generateId : () => string = customAlphabet(idAlphabet, 7);
 
-const generateContent = (id: string, prefix?  : string) : string => `${prefix}${id}`;
+const generateContent = (id: string, prefix?  : string) : string => `${prefix || ""}${id}`;
 
 async function generateQrcode(id : string, prefix? : string) : Promise<string>
 {
-    let content = generateContent(prefix);
+    let content = generateContent(id, prefix);
     let qrcode : Buffer = await qrCode.generate(content, id);
 
     let path : string = buildS3DocumentPath(id);
